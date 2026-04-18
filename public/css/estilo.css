@@ -433,11 +433,11 @@ input {
 
 /* SIMULADOR */
 
-.simulador {
+.girias-boxes {
   color: white;
 }
 
-.simulador .container {
+.girias-boxes .container {
   flex-direction: column;
   overflow: scroll; 
   height: var(--tamanho-simulador);
