@@ -68,19 +68,22 @@ body {
   color: white;
   background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('../assets/Images/bandeiraBrasil.jpg');
   background-size: cover;
+  border-bottom: solid 4px black;
 }
 
 .banner .container {
   justify-content: center;
   align-items: center;
   height: 100%;
+  padding-right: 250px;
+  
 }
 
 .banner .container p {
   width: 50%;
   margin: 0;
-  padding: 0;
-  font-size: 36px;
+  padding-bottom: 160px;
+  font-size: 40px;
 }
 
 .banner .container span {
@@ -165,31 +168,97 @@ body {
   align-items: center;
 }
 
+/* BOX AMIZADES  */
+ .box3{
+  display: flex;
+
+}
+.box3 img{
+  margin: 30px;
+  width: 50%;
+  height: auto;
+}
+.box3 h1{
+  color: white;
+ 
+  font-family: fantasy;
+  letter-spacing: 3px;
+  font-size: 45px;
+  font-weight: 500;
+  
+  padding-top: 30px;
+  padding-bottom: 40px;
+}
+.box3 p{
+  font-weight: 500;
+  font-size: 26px;
+  font-family: 'Barlow', 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  width: 90%;
+  text-align: center;
+  
+}
+.amizade-titulo{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 
 /* DIVISÕES */
-.divisao{
-  border: solid 4px black;
+.divisao {
+  display: flex;
+  align-items: center;
+}
+
+.linha {
+  flex: 1;
+  height: 2px;
+  background: black;
+}
+
+.divisao img {
+  width: 300px;
+  
 }
 
 /* FOOTER */
-
-.footer {
-  background-color: #32b9cd;
-  height: 150px;
-  color: #fff;
-  display: flex;
-  font-size: 15px;
+.footer_box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+    height: auto;
+    background-color: black;
+    border-top: 3px solid green;
+}
+.footer_content {
+    display: flex;
+    filter: initial;
+    gap: 10vw;
+  padding-top: 10px;
+  color: white;
 }
 
-.footer .container {
-  justify-content: center;
-  text-align: center;
+
+.footer_content h1 {
+    margin-bottom: 25px;
 }
 
-.footer .container .version {
-  font-size: 12px;
+.midias,
+.servicosF,
+.recebaNovidades {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
+.footer_contentbox h1 {
+    font-size: 20px;
+}
+
+.recebaNovidades{
+  width: 210px;   
+}
 /* LOGIN */
 
 .login {
