@@ -30,37 +30,38 @@
 
 <body>
 
-    <div class="janela">
-        <div class="header-left">
-            <h1>AquaTech</h1>
+    <div class="header">
+      <div class="container">
+     <div class="logo-area">
+        <span class="image">
+    <img src="../assets/Images/Logo_MissaoBrasil.png">
+  </span>
+  <div class="hello">
+       <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
+   </div>
 
-            <div class="hello">
-                <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
-            </div>
+  </div>
+        <ul class="navbar">
 
-            <div class="btn-nav-white">
-                <a href="./cards.html">
-                    <h3>Aquários</h3>
-                </a>
-            </div>
+           <li>
+        <a href="cards.html">Quiz</a>
+      </li>
 
-            <div class="btn-nav">
+      <li>|</li>
 
-                <h3>Gráficos</h3>
+      <li>
+        <a href="mural.html">Mural</a>
+      </li>
 
-            </div>
+      <li>|</li>
 
-            <div class="btn-nav-white">
-                <a href="./mural.html">
-                    <h3>Mural de Avisos</h3>
-                </a>
-            </div>
-
-            <div class="btn-logout" onclick="limparSessao()">
-                <h3>Sair</h3>
-            </div>
-
-        </div>
+      <li>
+        <a href="#" onclick="limparSessao()">Sair</a>
+      </li>
+          
+        </ul>
+      </div>
+    </div>
 
         <div class="dash">
             <div id="alerta">

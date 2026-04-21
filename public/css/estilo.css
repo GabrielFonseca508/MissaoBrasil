@@ -11,6 +11,19 @@ body {
    width: auto;
    display: block;
 }
+.logo-area {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.image {
+  margin-left: -35px;
+  margin-bottom: -12px;
+}
+
+.hello {
+  margin-top: -5px;
+}
 
 :root {
   --tamanho-header: 80px;
@@ -27,33 +40,37 @@ body {
 }
 
 .header {
-  height: var(--tamanho-header);
-  border-bottom: 2px solid green;
+  height: 80px;
   background-color: black;
+  border-bottom: 2px solid green;
 }
 
 .header .container {
+  display: flex;
   justify-content: space-between;
   align-items: center;
   height: 100%;
 }
 
-.header a {
-  text-decoration: none;
-  color: white;
+.navbar {
+  display: flex;
+  list-style: none;
+  gap: 15px;
+  align-items: center;
 }
 
-.agora {
+.navbar li a {
+  color: white;
+  text-decoration: none;
   font-weight: 800;
 }
 
-.navbar {
-  width: 300px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  list-style: none;
-  color: white;
+.navbar li a:hover {
+  color: green;
+}
+.agora {
+  font-weight: 800;
+  color: green;
 }
 
 
