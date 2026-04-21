@@ -4,7 +4,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Barlow', 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: gray;
+  background-color: rgb(181, 189, 189);
 }
  .image img{
    height: 300px;
@@ -98,16 +98,16 @@ body {
 }
  
 /* -- BOX DISCIPLINA  */
-.box1{
+.box{
   display: flex;
 
 }
-.box1 img{
+.box img{
   margin: 30px;
   width: 50%;
   height: auto;
 }
-.box1 h1{
+.box h1{
   color: white;
  
   font-family: fantasy;
@@ -118,7 +118,7 @@ body {
   padding-top: 30px;
   padding-bottom: 40px;
 }
-.box1 p{
+.box p{
   font-weight: 500;
   font-size: 26px;
   font-family: 'Barlow', 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -126,78 +126,7 @@ body {
   text-align: center;
   
 }
-.disciplina-titulo{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-/* BOX OPORTUNIDADE DE EVOLUÇÃO */
-
- .box2{
-  display: flex;
-
-}
-.box2 img{
-  margin: 30px;
-  width: 50%;
-  height: auto;
-}
-.box2 h1{
-  color: white;
- 
-  font-family: fantasy;
-  letter-spacing: 3px;
-  font-size: 45px;
-  font-weight: 500;
-  
-  padding-top: 30px;
-  padding-bottom: 40px;
-}
-.box2 p{
-  font-weight: 500;
-  font-size: 26px;
-  font-family: 'Barlow', 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  width: 90%;
-  text-align: center;
-  
-}
-.oportunidade-titulo{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-/* BOX AMIZADES  */
- .box3{
-  display: flex;
-
-}
-.box3 img{
-  margin: 30px;
-  width: 50%;
-  height: auto;
-}
-.box3 h1{
-  color: white;
- 
-  font-family: fantasy;
-  letter-spacing: 3px;
-  font-size: 45px;
-  font-weight: 500;
-  
-  padding-top: 30px;
-  padding-bottom: 40px;
-}
-.box3 p{
-  font-weight: 500;
-  font-size: 26px;
-  font-family: 'Barlow', 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  width: 90%;
-  text-align: center;
-  
-}
-.amizade-titulo{
+.home-titulo{
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -432,15 +361,119 @@ input {
 }
 
 /* SIMULADOR */
+.titulo p{
+   
+  padding-left: 10px;
+  font-weight: 500;
+  font-size: 22px;
+  font-family: 'Barlow', 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  
+
+}
+.titulo h1{
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  font-size: 40px;
+}
+.verde{
+  padding-right: 5px;
+  padding-left: 5px;
+}
 
 .girias-boxes {
-  color: white;
+  display: flex;
+  flex-wrap: wrap; 
+  color: black;
+  justify-content: center;
+  flex-direction: column;
+  overflow-X: scroll;
+  width: 90%;
+  height: 600px;
+  border: solid black 4px;
+  margin: auto;
+  border-radius: 15px;
+  background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('../assets/Images/bandeiraBrasil.jpg');
+  background-size: cover;
+
 }
 
 .girias-boxes .container {
+  border: solid green 4px;
+  border-radius: 23px;
+  background-color: white;
+  width: 500px;
+  height: 200px;
+margin: 30px;
+padding-bottom: 5px;
+}
+
+
+.girias-boxes .container img {
+  justify-content: flex-start;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  padding-top: 10px;
+  padding-left: 5px;
+
+}
+
+.texto-giria{
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 20px;
+  padding-right: 15px;
+}
+
+
+.expressao-boxes {
+    display: flex;
+  flex-wrap: wrap; 
+  color: black;
+  justify-content: center;
   flex-direction: column;
-  overflow: scroll; 
-  height: var(--tamanho-simulador);
+  overflow-X: scroll;
+  width: 90%;
+  height: 600px;
+  border: solid black 4px;
+  margin: auto;
+  border: solid black 4px;
+  margin: auto;
+  border-radius: 15px;
+  background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('../assets/Images/bandeiraBrasil.jpg');
+  background-size: cover;
+
+  
+}
+.expressao-boxes .container-expressao {
+  display: flex;
+  border: solid green 4px;
+  border-radius: 23px;
+  background-color: white;
+  width: 800px;
+  height: 200px;
+margin: 30px;
+padding-bottom: 5px;
+}
+
+.expressao-boxes .container-expressao img {
+
+  justify-content: flex-start;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  padding-top: 10px;
+  padding-left: 10px;
+
+}
+.texto-expressao{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding-left: 40px;
+  padding-right: 15px;
+  
 }
 
 /* ALERTA */
