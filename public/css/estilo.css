@@ -4,7 +4,8 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Barlow', 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: rgb(181, 189, 189);
+  /* background-color: rgb(181, 189, 189); */
+  background-color: rgb(33, 33, 34);
 }
  .image img{
    height: 300px;
@@ -30,7 +31,7 @@ body {
   --tamanho-banner: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
   --tamanho-simulador: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
   --tamanho-login: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
-  --tamanho-footer: 65px;
+  --tamanho-footer: 10px;
 }
 
 .container {
@@ -123,9 +124,10 @@ body {
   margin: 30px;
   width: 50%;
   height: auto;
-}
+  border-radius: 30px;
+box-shadow: 0px 0px 10px 6px rgba(255, 255, 255, 0.421);}
 .box h1{
-  color: white;
+  color: gold;
  
   font-family: fantasy;
   letter-spacing: 3px;
@@ -141,6 +143,7 @@ body {
   font-family: 'Barlow', 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   width: 90%;
   text-align: center;
+  color: white;
   
 }
 .home-titulo{
@@ -159,7 +162,8 @@ body {
 .linha {
   flex: 1;
   height: 2px;
-  background: black;
+  /* background: black; */
+  background: white;
 }
 
 .divisao img {
@@ -392,11 +396,9 @@ input {
   justify-content: center;
   margin-top: 20px;
   font-size: 40px;
+  color: gold;
 }
-.verde{
-  padding-right: 5px;
-  padding-left: 5px;
-}
+
 
 .girias-boxes {
   display: flex;

@@ -127,7 +127,16 @@
    
 
     // Verificando se há algum campo em branco
-    if (
+
+
+    // RESOLVER AMANHÃ
+    let verificacao = ['0','1','2','3','4','5','6','7','8','9','!', '@', '#', '$', '%', '^', '&', '*', '_', '+', '-', '=',  '|',  ':', ';',  ',', '.', '?' ] 
+    let temverificacao = false;
+
+   
+
+  // campo vazio
+   if (
       nomeVar == "" ||
       emailVar == "" ||
       senhaVar == "" ||
@@ -135,13 +144,44 @@
     ) {
       cardErro.style.display = "block";
       mensagem_erro.innerHTML =
-        "(Mensagem de erro para todos os campos em branco)";
+        "(Mensagem de erro: Preencha todos os campos em branco)";
 
       finalizarAguardar();
       return false;
-    } else {
-      setInterval(sumirMensagem, 5000);
+    }  else
+
+    // senhas iguais
+    if (senhaVar != confirmacaoSenhaVar) {
+  cardErro.style.display = "block";
+  mensagem_erro.innerHTML = "(Mensagem de erro: As senhas não coincidem)";
+  setTimeout(sumirMensagem, 5000);
+  return false;
+}
+    
+
+// contem caractere
+    for(let i = 0;i < verificacao.length;i++)
+
+   {
+    if (senhaVar.includes(verificacao[i]))
+    {
+    temverificacao = true
+    break;
     }
+  }
+    
+    if(temverificacao == true){
+     setInterval(sumirMensagem, 5000);
+  }else{
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML =
+        "(Mensagem de erro : Precisa inserir algum caracterer na senha)";
+         finalizarAguardar();
+      return false;
+    } 
+   
+
+
 
     // Verificando se o código de ativação é de alguma empresa cadastrada
   

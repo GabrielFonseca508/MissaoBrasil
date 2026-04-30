@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <link rel="shortcut icon" href="../assets/icon/favicon2.ico" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Missão Brasil</title>
+
+
+    <link rel="stylesheet" href="./../css/dashboards.css">
+    <link rel="stylesheet" href="./../css/estilo.css" />
+
+    <script src="../js/sessao.js"></script>
+   
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body onload="validarSessao()">
+
+    <div class="janela">
+
+        <div class="header">
+      <div class="container">
+     <div class="logo-area">
+        <span class="image">
+    <img src="../assets/Images/Logo_MissaoBrasil.png">
+  </span>
+  <div class="hello">
+       <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
+   </div>
+
+  </div>
+        <ul class="navbar">
+
+           <li>
+        <a href="dashboard.html">Dashboard</a>
+      </li>
+
+
+      <li>|</li>
+
+      <li>
+        <a href="#" onclick="limparSessao()">Sair</a>
+      </li>
+          
+        </ul>
+      </div>
+    </div>
+<style>
+        .intro-quiz {
+            color: white;
+        background-color: black;
+        padding: 30px;
+        border-radius: 10px;
+        max-width: 600px;
+        margin: auto;
+    }
+    .intro-quiz h1{
+        color: gold;
+    }
+
+    .quiz {
+        display: none;
+        max-width: 700px;
+        margin: 30px auto;
+        padding: 20px;
+        text-align: left;
+    }
+    .quiz h2{
+        color: white;
+    }
+
+    .pergunta {
+        margin-bottom: 20px;
+        flex-direction: column;
+        border: solid 2px green ;  
+        border-radius: 20px;
+          /* background-color: rgb(33, 33, 34); */
+         color: white;
+        background-color: black;
+        /* #000080 */
+    }
+   
+
+    .intro-quiz button {
+        padding: 10px 20px;
+        background: green;
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+    .box-pergunta{
+        margin: 10px;
+        font-size: larger;
+        font-weight: 100;
+    
+    }
+   
+</style>
+</head>
+
+<body>
+
+<div class="container-intro-quiz">
+    <div class="intro-quiz">
+        <h1>Qual seu nível de conhecimento sobre o Exército Brasileiro</h1>
+
+        <p> Responda este quiz para saber</p>   
+        <button onclick="iniciarQuiz()">Começar</button>
+
+    </div>
+</div>
+
+
+
+<div class="quiz" id="quiz">
+
+    <h2>Responda as perguntas:</h2>
+
+
+
+    <div class="pergunta">
+        <div class="box-pergunta">
+        <p>1. Qual é a função principal do Exército:</p>
+        <input type="radio" name="q1" value="certo">Defesa do páis<br>
+        <input type="radio" name="q1" value="errado">Controle de internet<br>
+        <input type="radio" name="q1" value="errado">Cortar grama<br>
+        <input type="radio" name="q1" value="errado">Pintar as ruas<br>
+    </div>
+    </div>
+
+    <div class="pergunta">
+        <div class="box-pergunta">
+        <p>2. Qual é a idade em que o homem deve se alistar obrigatóriamente:</p>
+        <input type="radio" name="q2" value="errado"> 17<br>
+        <input type="radio" name="q2" value="certo"> 18<br>
+        <input type="radio" name="q2" value="errado"> 19<br>
+        <input type="radio" name="q2" value="errado"> Não precisa se alistar<br>
+    </div>
+    </div>
+
+    <div class="pergunta">
+        <div class="box-pergunta">
+        <p>3. Qual o posto de graduação mais baixo do Exército:</p>
+        <input type="radio" name="q3" value="errado"> Soldado do efetivo profissional<br>
+        <input type="radio" name="q3" value="errado"> Cabo<br>
+        <input type="radio" name="q3" value="certo"> Soldado do efetivo variável<br>
+        <input type="radio" name="q3" value="errado">Sargento <br>
+</div>
+    </div>
+
+     <div class="pergunta">
+        <div class="box-pergunta">
+        <p>4. Além do Exercito quais são as outras duas maiores forças miltares que defendem o Brasil:</p>
+        <input type="radio" name="q4" value="errado"> Marinha e Polícia militar<br>
+        <input type="radio" name="q4" value="certo">Marinha e Força Aeréa <br>
+        <input type="radio" name="q4" value="errado"> Policia Penal e Policia rodoviaria<br>
+        <input type="radio" name="q4" value="errado"> Força Aeréa e Policia civil<br>
+</div>
+    </div>
+
+    <div class="pergunta">
+        <div class="box-pergunta">
+        <p>5. Qual o fuzil mais utilizado no exército Brasileiro:</p>
+        <input type="radio" name="q5" value="errado"> IA2<br>
+        <input type="radio" name="q5" value="errado"> Imbel<br>
+        <input type="radio" name="q5" value="certo"> FAL762<br>
+        <input type="radio" name="q5" value="errado"> AK47<br>
+</div>
+    </div>
+
+    <div class="pergunta">
+        <div class="box-pergunta">
+        <p>6. Em que ano a 1ª mulher serviu ao Exército Brasileiro:</p>
+        <input type="radio" name="q6" value="certo"> 1944<br>
+        <input type="radio" name="q6" value="errado"> 2026<br>
+        <input type="radio" name="q6" value="errado"> 1940<br>
+        <input type="radio" name="q6" value="errado"> 1920<br>
+</div>
+    </div>
+
+    <div class="pergunta">
+        <div class="box-pergunta">
+        <p>7. Em tempos de guerra, o General de Exército pode ser promovido a qual posto de graduação:</p>
+        <input type="radio" name="q7" value="certo"> Marechal<br>
+        <input type="radio" name="q7" value="errado"> Coronel<br>
+        <input type="radio" name="q7" value="errado"> Cabo<br>
+        <input type="radio" name="q7" value="errado"> Capitão<br>
+</div>
+    </div>
+
+    <div class="pergunta">
+        <div class="box-pergunta">
+        <p>8. Qual característica é mais valorizada em situações operacionais:</p>
+        <input type="radio" name="q8" value="errado">Velocidade apenas<br>
+        <input type="radio" name="q8" value="errado">Força apenas<br>
+        <input type="radio" name="q8" value="errado">Aparência<br>
+        <input type="radio" name="q8" value="certo">Resistência, preparo físico e mental<br>
+</div>
+    </div>
+
+    <div class="pergunta">
+        <div class="box-pergunta">
+        <p>9. O que significa TAF no Exército Brasileiro:</p>
+        <input type="radio" name="q9" value="errado">Treinamento de Ação Física<br>
+        <input type="radio" name="q9" value="errado">Treino Avançado de Força<br>
+        <input type="radio" name="q9" value="errado">Técnica de Avaliação Funcional<br>
+        <input type="radio" name="q9" value="certo">Teste de Aptidão Física<br>
+
+</div>
+    </div>
+
+    <div class="pergunta">
+        <div class="box-pergunta">
+        <p>10. qual o minimo de flexões na barra fixa um militar que tem entre 18 e 23 anos deve fazer para alcançar a nota ECO no TAF:</p>
+        <input type="radio" name="q10" value="certo"> 12+<br>
+        <input type="radio" name="q10" value="errado"> 10<br>
+        <input type="radio" name="q10" value="errado"> 7<br>
+        <input type="radio" name="q10" value="errado"> 5<br>
+</div>
+    </div>
+    
+    <button onclick="corrigir()">Finalizar</button>
+
+    <div id="div_mensagem"></div>
+</div>
+
+<script>
+function iniciarQuiz() {
+    
+    document.getElementById("quiz").style.display = "block";
+}
+
+function corrigir() {
+    let pontos = 0;
+
+    for(let quest = 1; quest <= 10; quest++){
+        let opcoes = document.getElementsByName("q" + quest);
+
+        for(let j = 0;j < opcoes.length;j++){
+            if (opcoes[j].checked && opcoes[j].value == "certo"){
+                pontos++;
+                console.log(pontos)
+            }
+        }
+
+    }
+ 
+ let result = pontos;
+    div_mensagem.innerHTML =
+        `<p style "color:white;">Você fez ${pontos}/10 pontos!<p>`;
+}
+</script>
+
+
+
+
+</html>
