@@ -105,7 +105,7 @@
 </style>
 </head>
 
-<body>
+
 
 <div class="container-intro-quiz">
     <div class="intro-quiz">
@@ -229,33 +229,143 @@
     <button onclick="corrigir()">Finalizar</button>
 
     <div id="div_mensagem"></div>
+
+    <button id="btn_refazer" onclick="refazerQuiz()" style="display:none;">
+    Refazer quiz
+</button>
+
 </div>
 
 <script>
+
+    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+
 function iniciarQuiz() {
     
     document.getElementById("quiz").style.display = "block";
 }
 
+ let nota = 0;
+
 function corrigir() {
     let pontos = 0;
 
-    for(let quest = 1; quest <= 10; quest++){
+    for (let quest = 1; quest <= 10; quest++) {
         let opcoes = document.getElementsByName("q" + quest);
+        let respondeu = false;
 
-        for(let j = 0;j < opcoes.length;j++){
-            if (opcoes[j].checked && opcoes[j].value == "certo"){
-                pontos++;
-                console.log(pontos)
+        for (let j = 0; j < opcoes.length; j++) {
+            if (opcoes[j].checked) {
+                respondeu = true;
+
+                if (opcoes[j].value == "certo") {
+                    pontos++;
+                }
             }
         }
 
+        if (!respondeu) {
+            alert("Responda todas as perguntas!");
+            return;
+        }
     }
- 
- let result = pontos;
-    div_mensagem.innerHTML =
-        `<p style "color:white;">Você fez ${pontos}/10 pontos!<p>`;
+
+    nota = pontos;
+let mensagem = ''
+    if(nota  < 3){
+        mensagem = `Acertou ${nota} pontos, Mocorongo.<br>
+        PRONTO, sua QM é engenharia`
+        // MOCORONGO Engenharia
+    }
+    else if(nota < 5){
+        mensagem = `Acertou ${nota} pontos, muito bisonho.<br>
+        FOGO, sua QM é artilharia`
+        // BISONHO artilharia
+    }
+    else if(nota < 7){
+        mensagem = `Acertou ${nota} pontos, você é um soldado colado.<br>
+        CAVALARIA, sua QM é cavalaria`
+        // Ainda ta meio colado CAVALARIA
+    }else if(nota < 9){
+        mensagem = `Acertou ${nota} pontos, já da pra pagar um embuste.<br>
+        NAPION, sua QM é Material Bélico (Mat Bel)`
+//  da pra pagar embuste Material bélico (MAT BEL)
+    }else if(nota < 11){
+        mensagem = `Acertou ${nota} pontos, guerreiro safo.<br>
+        RONDON, sua QM é Comunicações`
+// Safo COMUNICAÇÕES
+    }else if(nota < 13){
+        mensagem = `Acertou ${nota} pontos, guerreiro audaz.<br>
+        SUPRIR, sua QM é intendencia`
+// audaz intendente
+    }else {
+        mensagem = `Acertou ${nota} pontos, distinção do quiz.<br>
+        AÇO, sua QM é infantaria`
+        // INFANTE distinção
+    }
+    div_mensagem.innerHTML = mensagem
+        `<p style="color:white;">${mensagem}</p>`;
+
+    inserirnotas();
 }
+
+
+    function inserirnotas() {
+        var idUsuario = sessionStorage.ID_USUARIO;
+        
+
+        fetch(`/quizRoutes/inserir`, {
+            method: "post",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({nota: nota,
+        idUsuario: idUsuario})
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                div_mensagem.innerHTML += `<main style = "font-size:18; color:gold">SELVAAA, conseguiu responder o quiz</main>`
+                document.getElementById("btn_refazer").style.display = "block";
+                limparFormulario();
+                finalizarAguardar();
+            } else if (resposta.status == 404) {
+                window.alert("Deu 404!");
+            } else {
+                throw ("Houve um erro ao tentar realizar o quiz! Código da resposta: " + resposta.status);
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            finalizarAguardar();
+        });
+
+        return false;
+
+    }
+
+    function refazerQuiz() {
+
+    for (let quest = 1; quest <= 10; quest++) {
+        let opcoes = document.getElementsByName("q" + quest);
+
+        for (let j = 0; j < opcoes.length; j++) {
+            opcoes[j].checked = false;
+        }
+    }
+
+   div_mensagem.innerHTML = '';
+
+    nota = 0;
+
+    let btn = document.getElementById("btn_refazer");
+    if (btn) {
+        btn.style.display = "none";
+    }
+
+    window.scrollTo(0, 0);
+}
+
 </script>
 
 

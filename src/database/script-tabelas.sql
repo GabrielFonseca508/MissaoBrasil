@@ -6,57 +6,41 @@
 comandos para mysql server
 */
 
-CREATE DATABASE aquatech;
+CREATE DATABASE DBMissaoBrasil;
 
-USE aquatech;
+USE DBMissaoBrasil;
 
-CREATE TABLE empresa (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	razao_social VARCHAR(50),
-	cnpj CHAR(14),
-	codigo_ativacao VARCHAR(50)
+
+CREATE TABLE qms(
+id INT PRIMARY KEY,
+nome VARCHAR (45),
+descricao VARCHAR(400),
+patrono VARCHAR(60)
 );
+
+
+INSERT INTO qms VALUES
+(1, 'Infantaria', 'A Infantaria é a principal força de combate terrestre, atuando diretamente na linha de frente em operações de ataque, defesa e ocupação de território em diversos tipos de terreno.', 'Brigadeiro Sampaio'),
+(2, 'Cavalaria', 'A Cavalaria destaca-se pela mobilidade e rapidez, utilizando veículos blindados para reconhecimento, segurança e ações ofensivas rápidas no campo de batalha.', 'Marechal Osório'),
+(3, 'Artilharia', 'A Artilharia é responsável pelo apoio de fogo, utilizando armamentos de longo alcance para atingir alvos estratégicos e apoiar as tropas durante as operações.', 'Marechal Mallet'),
+(4, 'Engenharia', 'A Engenharia atua na construção de pontes, estradas e fortificações, além de remover obstáculos e apoiar a mobilidade e a defesa das tropas em combate.', 'Ten Cel Villagran Cabrita'),
+(5, 'Comunicações', 'A área de Comunicações garante a transmissão segura e eficiente de informações entre unidades militares, essencial para a coordenação das operações.', 'Marechal Rondon'),
+(6, 'Intendência', 'A Intendência é responsável pelo suporte logístico, incluindo alimentação, transporte, suprimentos e administração de recursos necessários às tropas.', 'Marechal Bittencourt'),
+(7, 'Material Bélico', 'O Material Bélico cuida da manutenção, controle e armazenamento de armamentos e equipamentos, garantindo que estejam em condições adequadas de uso.', 'Ten Gen Napion');
 
 CREATE TABLE usuario (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	nome VARCHAR(50),
-	email VARCHAR(50),
-	senha VARCHAR(50),
-	fk_empresa INT,
-	FOREIGN KEY (fk_empresa) REFERENCES empresa(id)
+id INT PRIMARY KEY AUTO_INCREMENT,
+nome VARCHAR(50) NOT NULL,
+email VARCHAR(50) NOT NULL,
+senha VARCHAR(50) NOT NULL,
+fkQM INT,
+CONSTRAINT fkQM FOREIGN KEY(fkQM) REFERENCES qms(id)
 );
 
-CREATE TABLE aviso (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	titulo VARCHAR(100),
-	descricao VARCHAR(150),
-	fk_usuario INT,
-	FOREIGN KEY (fk_usuario) REFERENCES usuario(id)
+CREATE TABLE resultado (
+id INT PRIMARY KEY AUTO_INCREMENT,
+fkUsuario INT,
+nota INT,
+dtRealização DATETIME DEFAULT CURRENT_TIMESTAMP,
+FOREIGN KEY (fk_usuario) REFERENCES usuario(id)
 );
-
-create table aquario (
-/* em nossa regra de negócio, um aquario tem apenas um sensor */
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	descricao VARCHAR(300),
-	fk_empresa INT,
-	FOREIGN KEY (fk_empresa) REFERENCES empresa(id)
-);
-
-/* esta tabela deve estar de acordo com o que está em INSERT de sua API do arduino - dat-acqu-ino */
-
-create table medida (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	dht11_umidade DECIMAL,
-	dht11_temperatura DECIMAL,
-	luminosidade DECIMAL,
-	lm35_temperatura DECIMAL,
-	chave TINYINT,
-	momento DATETIME,
-	fk_aquario INT,
-	FOREIGN KEY (fk_aquario) REFERENCES aquario(id)
-);
-
-insert into empresa (razao_social, codigo_ativacao) values ('Empresa 1', 'ED145B');
-insert into empresa (razao_social, codigo_ativacao) values ('Empresa 2', 'A1B2C3');
-insert into aquario (descricao, fk_empresa) values ('Aquário de Estrela-do-mar', 1);
-insert into aquario (descricao, fk_empresa) values ('Aquário de Peixe-dourado', 2);
