@@ -25,6 +25,21 @@ body {
 .hello {
   margin-top: -5px;
 }
+.hello {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.hello h3 {
+  color: #e3b062;
+  font-weight: 300;
+  font-size: 1.2rem;
+}
+
+.hello h3 span {
+  font-weight: 800;
+}
 
 :root {
   --tamanho-header: 80px;
@@ -381,7 +396,7 @@ input {
   width: 50px;
 }
 
-/* SIMULADOR */
+/* Girias */
 .titulo p{
    
   padding-left: 10px;
@@ -400,6 +415,7 @@ input {
 }
 
 
+
 .girias-boxes {
   display: flex;
   flex-wrap: wrap; 
@@ -414,6 +430,7 @@ input {
   border-radius: 15px;
   background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('../assets/Images/bandeiraBrasil.jpg');
   background-size: cover;
+  box-shadow: 0px 0px 10px 6px rgba(255, 255, 255, 0.421);
 
 }
 
@@ -421,14 +438,16 @@ input {
   border: solid green 4px;
   border-radius: 23px;
   background-color: white;
-  width: 500px;
+  opacity: 0.7;
+  width: 400px;
   height: 200px;
-margin: 30px;
+margin: 20px;
 padding-bottom: 5px;
+
 }
 
 
-.girias-boxes .container img {
+/* .girias-boxes .container img {
   justify-content: flex-start;
   width: 180px;
   height: 180px;
@@ -436,16 +455,34 @@ padding-bottom: 5px;
   padding-top: 10px;
   padding-left: 5px;
 
-}
+} */
 
 .texto-giria{
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
   padding-left: 20px;
-  padding-right: 15px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+  font-size: 19px;
+  
+}
+.texto-giria h2 {
+  margin-bottom: 5px;
+  font-weight: 800;
+}
+
+.texto-giria p {
+  margin-bottom: 7px;
+  font-weight: 600;
+  
+}
+.texto-giria span{
+font-weight: 600;
 }
 
 
+/* Expressao boxes */
 .expressao-boxes {
     display: flex;
   flex-wrap: wrap; 
@@ -462,6 +499,7 @@ padding-bottom: 5px;
   border-radius: 15px;
   background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('../assets/Images/bandeiraBrasil.jpg');
   background-size: cover;
+  box-shadow: 0px 0px 10px 6px rgba(255, 255, 255, 0.421);
 
   
 }
@@ -476,16 +514,6 @@ margin: 30px;
 padding-bottom: 5px;
 }
 
-.expressao-boxes .container-expressao img {
-
-  justify-content: flex-start;
-  width: 180px;
-  height: 180px;
-  border-radius: 50%;
-  padding-top: 10px;
-  padding-left: 10px;
-
-}
 .texto-expressao{
   display: flex;
   flex-wrap: wrap;
@@ -540,4 +568,122 @@ padding-bottom: 5px;
   50%  {transform: rotate(25deg)}
   75%  {transform: rotate(-25deg)}
   100% {transform: rotate(25deg)}
+}
+/* quiz */
+.intro-quiz {
+            color: white;
+        background-color: black;
+        padding: 30px;
+        border-radius: 10px;
+        max-width: 600px;
+        margin: auto;
+    }
+    .intro-quiz h1{
+        color: gold;
+    }
+
+    .quiz {
+        display: none;
+        max-width: 700px;
+        margin: 30px auto;
+        padding: 20px;
+        text-align: left;
+    }
+    .quiz h2{
+        color: white;
+    }
+
+    .pergunta {
+        margin-bottom: 20px;
+        flex-direction: column;
+        border: solid 2px green ;  
+        border-radius: 20px;
+          /* background-color: rgb(33, 33, 34); */
+         color: white;
+        background-color: black;
+        /* #000080 */
+    }
+   
+
+    .intro-quiz button {
+        padding: 10px 20px;
+        background: green;
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+    .box-pergunta{
+        margin: 10px;
+        font-size: larger;
+        font-weight: 100;
+    
+    }
+
+/* Dashboard */
+
+.container-grafico{
+  display: none;
+  color: black;
+  justify-content: center;
+  width: 70%;
+  height: auto;
+  border: solid black 4px;
+  margin: auto;
+  margin-top: 20px;
+  border-radius: 15px;
+  background-color: rgb(186, 179, 179);
+  box-shadow: 0px 0px 10px 6px rgba(255, 255, 255, 0.421);
+}
+.barrasG{
+  margin-bottom: 20px;
+  margin-top: 20px;
+  margin-right: 20px;
+}
+.topo-dash{
+  color: gold;
+}
+.topo-dash h1 {
+  display: flex;
+  margin-bottom: 5px;
+  font-weight: 800;
+  justify-content: center;
+}
+
+.topo-dash h2 {
+  display: flex;
+  padding-left:20% ;
+  margin-bottom: 14px;
+  font-weight: 600;
+  
+}
+
+ .topo-dash select {
+  width: 250px;
+  padding: 12px;
+  margin-left:19% ;
+  border: 2px solid green;
+  border-radius: 12px;
+  background-color: rgba(0,0,0,0.8);
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.topo-dash select:focus {
+  outline: none;
+  border-color: yellow;
+}
+.topo-dash button {
+  width: 120px;
+  height: 40px;
+  margin-left: 5px;
+  border: 2px solid green;
+  border-radius: 20px;
+  background-color: green;
+  color: white;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
 }

@@ -14,6 +14,11 @@ router.get("/listar", function (req, res) {
     quizController.listar(req, res);
 });
 
+router.get("/listarIndividual/:idUsuario", function (req, res) {
+    // função a ser chamada quando acessar /carros/listar
+    quizController.listarIndividual(req, res);
+});
+
 
 
 module.exports = router;

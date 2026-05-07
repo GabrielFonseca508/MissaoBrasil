@@ -1,15 +1,34 @@
 var database = require("../database/config");
 
 
-
-// NECESSARIO CRIAR A TABELA PARA ARMAZENAR AS NOTAS E O ID DO USUARIO
-
-function listar() {
+function listar(idUsuario) {
     var instrucaoSql = `
-        SELECT (nota,fk) FROM resultado;   
+SELECT 
+usuario.nome,
+MAX(resultado.nota) AS maiorNota
+FROM resultado
+JOIN usuario
+ON resultado.fkUsuario = usuario.id
+GROUP BY usuario.nome
+ORDER BY maiorNota DESC;  
     `;
-    console.log("Executando a instrução SQL: \n" + instrucao);
-    return database.executar(instrucao);
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function listarIndividual(idUsuario) {
+    var instrucaoSql = `
+SELECT 
+usuario.nome,
+resultado.nota,
+DATE_FORMAT(resultado.dtRealizacao, '%d/%m %H:%i') AS dataFormatada
+FROM resultado
+JOIN usuario
+ON resultado.fkUsuario = usuario.id
+WHERE fkUsuario = ${idUsuario};  
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
 }
 
 
@@ -28,5 +47,6 @@ function inserir(nota, idUsuario) {
 
 module.exports = {
   inserir,
-  listar
+  listar,
+  listarIndividual
 }

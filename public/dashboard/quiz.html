@@ -9,7 +9,6 @@
     <title>Missão Brasil</title>
 
 
-    <link rel="stylesheet" href="./../css/dashboards.css">
     <link rel="stylesheet" href="./../css/estilo.css" />
 
     <script src="../js/sessao.js"></script>
@@ -51,63 +50,12 @@
         </ul>
       </div>
     </div>
-<style>
-        .intro-quiz {
-            color: white;
-        background-color: black;
-        padding: 30px;
-        border-radius: 10px;
-        max-width: 600px;
-        margin: auto;
-    }
-    .intro-quiz h1{
-        color: gold;
-    }
 
-    .quiz {
-        display: none;
-        max-width: 700px;
-        margin: 30px auto;
-        padding: 20px;
-        text-align: left;
-    }
-    .quiz h2{
-        color: white;
-    }
-
-    .pergunta {
-        margin-bottom: 20px;
-        flex-direction: column;
-        border: solid 2px green ;  
-        border-radius: 20px;
-          /* background-color: rgb(33, 33, 34); */
-         color: white;
-        background-color: black;
-        /* #000080 */
-    }
-   
-
-    .intro-quiz button {
-        padding: 10px 20px;
-        background: green;
-        color: white;
-        border: none;
-        cursor: pointer;
-        border-radius: 5px;
-    }
-    .box-pergunta{
-        margin: 10px;
-        font-size: larger;
-        font-weight: 100;
-    
-    }
-   
-</style>
 </head>
 
 
 
-<div class="container-intro-quiz">
+<div id="box_pergunta_quiz" class="container-intro-quiz">
     <div class="intro-quiz">
         <h1>Qual seu nível de conhecimento sobre o Exército Brasileiro</h1>
 
@@ -241,12 +189,12 @@
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
 function iniciarQuiz() {
-    
+    document.getElementById("box_pergunta_quiz").style.display = "none";
     document.getElementById("quiz").style.display = "block";
 }
 
- let nota = 0;
-
+let nota = 0;
+let mensagem = ''
 function corrigir() {
     let pontos = 0;
 
@@ -269,44 +217,37 @@ function corrigir() {
             return;
         }
     }
-
     nota = pontos;
-let mensagem = ''
+
     if(nota  < 3){
         mensagem = `Acertou ${nota} pontos, Mocorongo.<br>
         PRONTO, sua QM é engenharia`
-        // MOCORONGO Engenharia
     }
     else if(nota < 5){
         mensagem = `Acertou ${nota} pontos, muito bisonho.<br>
         FOGO, sua QM é artilharia`
-        // BISONHO artilharia
     }
     else if(nota < 7){
-        mensagem = `Acertou ${nota} pontos, você é um soldado colado.<br>
+        mensagem = `Acertou ${nota} pontos,você ainda é colado.<br>
         CAVALARIA, sua QM é cavalaria`
-        // Ainda ta meio colado CAVALARIA
     }else if(nota < 9){
         mensagem = `Acertou ${nota} pontos, já da pra pagar um embuste.<br>
         NAPION, sua QM é Material Bélico (Mat Bel)`
-//  da pra pagar embuste Material bélico (MAT BEL)
     }else if(nota < 11){
         mensagem = `Acertou ${nota} pontos, guerreiro safo.<br>
         RONDON, sua QM é Comunicações`
-// Safo COMUNICAÇÕES
-    }else if(nota < 13){
+    }else if(nota < 13 ){
         mensagem = `Acertou ${nota} pontos, guerreiro audaz.<br>
         SUPRIR, sua QM é intendencia`
-// audaz intendente
     }else {
         mensagem = `Acertou ${nota} pontos, distinção do quiz.<br>
         AÇO, sua QM é infantaria`
-        // INFANTE distinção
     }
-    div_mensagem.innerHTML = mensagem
-        `<p style="color:white;">${mensagem}</p>`;
-
+    div_mensagem.innerHTML =
+        `<p style="color:gold;">${mensagem}</p>`;
+    
     inserirnotas();
+    btn.style.display = "none";
 }
 
 
