@@ -1,206 +1,210 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-br">
-
-<head>
-    <link rel="shortcut icon" href="../assets/icon/favicon2.ico" type="image/x-icon">
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <link
+      rel="shortcut icon"
+      href="../assets/icon/favicon2.ico"
+      type="image/x-icon"
+    />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MissãoBrasil | Dashboards</title>
 
-    
-    
     <link rel="stylesheet" href="./../css/estilo.css" />
-   
-     <script src="../js/sessao.js"></script>
 
-    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <script src="../js/sessao.js"></script>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
-        href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet">
+      href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
 
     <!-- scripts do Chart.js - 2022-1 -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <!--FONT AWESOME-->
-  
-</head>
+  </head>
 
-<!-- <body onload=" atualizarFeed()"> -->
+  <!-- <body onload=" atualizarFeed()"> -->
 
-<body onload="obterDados(); validarSessao()">
+  <body
+    onload="
+      obterDados();
+      validarSessao();
+    "
+  >
     <!-- HEADER -->
     <div class="header">
       <div class="container">
-     <div class="logo-area">
-        <span class="image">
-    <img src="../assets/Images/Logo_MissaoBrasil.png">
-  </span>
-  <div class="hello">
-       <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
-   </div>
-
-  </div>
+        <div class="logo-area">
+          <span class="image">
+            <img src="../assets/Images/Logo_MissaoBrasil.png" />
+          </span>
+          <div class="hello">
+            <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
+          </div>
+        </div>
         <ul class="navbar">
-
-           <li>
-        <a href="quiz.html">Quiz</a>
-      </li>
-      <li>|</li>
-      <li>
-        <a href="#" onclick="limparSessao()">Sair</a>
-      </li>
-          
+          <li>
+            <a href="quiz.html">Quiz</a>
+          </li>
+          <li>|</li>
+          <li>
+            <a href="#" onclick="limparSessao()">Sair</a>
+          </li>
         </ul>
       </div>
     </div>
     <!-- corpo -->
-     
-   <div class="topo-dash">
-        <h1> Veja o ranking do quiz</h1>
 
-   <h2>Veja suas tentativas</h2>
-   <select name="" id="select_dashs">
-    <option>SELECIONE O RANKING</option>
-   <option>Minhas tentativas</option>
-   <option>Ranking geral</option>
-   </select>
-   <button onclick="selecionar()" >SELECIONAR</button>
-  </div>
+    <div class="topo-dash">
+      <h1>Veja o ranking do quiz</h1>
 
-<div>
-    <!-- Elemento canvas onde o gráfico de barra será desenhado -->
-     
-    <div id="gGeral" class="container-grafico">
-    <canvas class="barrasG" id="geral"></canvas>
+      <h2>Veja suas tentativas</h2>
+      <select name="" id="select_dashs">
+        <option>SELECIONE O RANKING</option>
+        <option>Minhas tentativas</option>
+        <option>Ranking geral</option>
+      </select>
+      <button onclick="selecionar()">SELECIONAR</button>
     </div>
 
-    <!-- Elemento canvas onde o gráfico de linha será desenhado -->
-    <div id="Gindividual" class="container-grafico">
+    <div>
+      <!-- Elemento canvas onde o gráfico de barra será desenhado -->
+
+      <div id="gGeral" class="container-grafico">
+        <canvas class="barrasG" id="geral"></canvas>
+      </div>
+
+      <!-- Elemento canvas onde o gráfico de linha será desenhado -->
+      <div id="Gindividual" class="container-grafico">
         <canvas id="individual"></canvas>
+      </div>
     </div>
-</div>
-
-</body>
+  </body>
 </html>
 <script>
-    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+  b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
-// Função chamada ao carregar a página para obter e processar os dados
-function obterDados(){
-  // Aqui seria a função que obteria os dados do banco de dados
-  // No caso, aqui você colocaria o fetch que teria o endereço da sua rota que você criou na pasta /routes e chamaria a função plotarGraficoLinha nessa função. Exemplo:
+  // Função chamada ao carregar a página para obter e processar os dados
+  function obterDados() {
+    // Aqui seria a função que obteria os dados do banco de dados
+    // No caso, aqui você colocaria o fetch que teria o endereço da sua rota que você criou na pasta /routes e chamaria a função plotarGraficoLinha nessa função. Exemplo:
 
-   fetch(`/quizRoutes/listar`)
-  .then(function(response){
-    return response.json();
-  })
-  .then(function(data){
-    plotarGraficoBarra(data);
-  })
-  .catch(function(err){
-    console.log(err);
-  }) 
+    fetch(`/quizRoutes/listar`)
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+        plotarGraficoBarra(data);
+      })
+      .catch(function (err) {
+        console.log(err);
+      });
 
-let idUsuario = sessionStorage.ID_USUARIO;
-fetch(`/quizRoutes/listarIndividual/${idUsuario}`)
-  .then(function(response){
-    return response.json();
-  })
-  .then(function(data){
-    plotarGraficoLinha(data);
-  })
-  .catch(function(err){
-    console.log(err);
-  })  
-}
-
-
-function selecionar(){
-    let opcao = select_dashs.value
-    if(opcao == 'Minhas tentativas'){
-    gGeral.style.display = "none"
-    Gindividual.style.display = "block"
-}
-else if(opcao == 'Ranking geral'){
-Gindividual.style.display = "none"
-gGeral.style.display = "block"
-}else{
-    Gindividual.style.display = "block"
-    gGeral.style.display = "block"
-}
-}
-// Função para plotar o gráfico de linha
-function plotarGraficoLinha(dados){
-  
-  // Separando os rótulos (labels) e os dados dos votos
-  var votos = [];
-  var jogadores = [];
-
-  // Preenchendo os arrays com os dados
-  for(var i = 0; i < dados.length; i++){
-   votos.push(dados[i].nota);
-jogadores.push(dados[i].dataFormatada);
+    let idUsuario = sessionStorage.ID_USUARIO;
+    fetch(`/quizRoutes/listarIndividual/${idUsuario}`)
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+        plotarGraficoLinha(data);
+      })
+      .catch(function (err) {
+        console.log(err);
+      });
   }
 
-  // Capturando o elemento canvas pelo id 
-  var ctx = document.getElementById('individual').getContext('2d');
-  // Criando o gráfico de linha usando o Chart.js
-  var myChart = new Chart(ctx, {
-      type: 'line', // Tipo de gráfico: linha
-      data: { // Dados para o gráfico
-          labels: jogadores, // Rótulos no eixo X
-          datasets: [{ 
-              label: 'Suas tentativas', // Nome do conjunto de dados
-              data: votos, // Dados dos votos
-              backgroundColor: [
-                  'green', // Cor de fundo das linhas
-              ],
-              borderColor: [
-                  'black', // Cor da borda das linhas
-              ],
-              borderWidth: 1 // Largura da borda das linhas
-          }]
+  function selecionar() {
+    let opcao = select_dashs.value;
+    if (opcao == "Minhas tentativas") {
+      gGeral.style.display = "none";
+      Gindividual.style.display = "block";
+    } else if (opcao == "Ranking geral") {
+      Gindividual.style.display = "none";
+      gGeral.style.display = "block";
+    } else {
+      Gindividual.style.display = "block";
+      gGeral.style.display = "block";
+    }
+  }
+  // Função para plotar o gráfico de linha
+  function plotarGraficoLinha(dados) {
+    // Separando os rótulos (labels) e os dados dos votos
+    var votos = [];
+    var jogadores = [];
+
+    // Preenchendo os arrays com os dados
+    for (var i = 0; i < dados.length; i++) {
+      votos.push(dados[i].nota);
+      jogadores.push(dados[i].dataFormatada);
+    }
+
+    // Capturando o elemento canvas pelo id
+    var ctx = document.getElementById("individual").getContext("2d");
+    // Criando o gráfico de linha usando o Chart.js
+    var myChart = new Chart(ctx, {
+      type: "line", // Tipo de gráfico: linha
+      data: {
+        // Dados para o gráfico
+        labels: jogadores, // Rótulos no eixo X
+        datasets: [
+          {
+            label: "Suas tentativas", // Nome do conjunto de dados
+            data: votos, // Dados dos votos
+            backgroundColor: [
+              "green", // Cor de fundo das linhas
+            ],
+            borderColor: [
+              "black", // Cor da borda das linhas
+            ],
+            borderWidth: 1, // Largura da borda das linhas
+          },
+        ],
       },
-  });
-} 
-
-// Função para plotar o gráfico de barra
-function plotarGraficoBarra(dados){
-
-  var fkUsuarios = [];
-  var notas = [];
-  
-  // Preenchendo os arrays com os dados
-  for(var i = 0; i < dados.length; i++){
-    fkUsuarios.push(dados[i].nome);
-notas.push(dados[i].maiorNota);
+    });
   }
 
-  // Capturando o elemento canvas pelo id 
-  var ctx = document.getElementById('geral').getContext('2d');
-  // Criando o gráfico de barra usando o Chart.js
-  var myChart = new Chart(ctx, {
-      type: 'bar', // Tipo de gráfico: barra
-      data: { // Dados para o gráfico
-          labels: fkUsuarios, // Rótulos no eixo X
-          datasets: [{
-              label: 'Ranking', // Nome do conjunto de dados
-              data: notas, // Dados dos votos
-              tension: 0.3,
-              backgroundColor: [
-                  'black', // Cor de fundo das barras
-              ],
-              borderColor: [
-                  'green', // Cor da borda das barras
-              ],
-              borderWidth: 2, // Largura da borda das barras
-              borderRadius:35
-            }]
+  // Função para plotar o gráfico de barra
+  function plotarGraficoBarra(dados) {
+    var fkUsuarios = [];
+    var notas = [];
+
+    // Preenchendo os arrays com os dados
+    for (var i = 0; i < dados.length; i++) {
+      fkUsuarios.push(dados[i].nome);
+      notas.push(dados[i].maiorNota);
+    }
+
+    // Capturando o elemento canvas pelo id
+    var ctx = document.getElementById("geral").getContext("2d");
+    // Criando o gráfico de barra usando o Chart.js
+    var myChart = new Chart(ctx, {
+      type: "bar", // Tipo de gráfico: barra
+      data: {
+        // Dados para o gráfico
+        labels: fkUsuarios, // Rótulos no eixo X
+        datasets: [
+          {
+            label: "Ranking", // Nome do conjunto de dados
+            data: notas, // Dados dos votos
+            tension: 0.3,
+            backgroundColor: [
+              "black", // Cor de fundo das barras
+            ],
+            borderColor: [
+              "green", // Cor da borda das barras
+            ],
+            borderWidth: 2, // Largura da borda das barras
+            borderRadius: 35,
+          },
+        ],
       },
       options: {
-        indexAxis: 'y'
-      }
-  });
-}
+        indexAxis: "y",
+      },
+    });
+  }
 </script>

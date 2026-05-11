@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <link rel="shortcut icon" href="../assets/icon/favicon2.ico" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Missão Brasil</title>
+
+
+    <link rel="stylesheet" href="./../css/estilo.css" />
+
+    <script src="../js/sessao.js"></script>
+   
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body onload="validarSessao()">
+
+    <div class="janela">
+
+        <div class="header">
+      <div class="container">
+     <div class="logo-area">
+        <span class="image">
+    <img src="../assets/Images/Logo_MissaoBrasil.png">
+  </span>
+  <div class="hello">
+       <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
+   </div>
+
+  </div>
+        <ul class="navbar">
+
+            
+            <li>
+                <a href="quiz.html">Quiz</a>
+            </li>
+            
+            <li>|</li>
+            <li>
+         <a href="dashboard.html">Dashboard</a>
+       </li>
+
+      <li>|</li>
+
+      <li>
+        <a href="#" onclick="limparSessao()">Sair</a>
+      </li>
+          
+        </ul>
+      </div>
+    </div>
+
+</head>
+
+<div class="qms-introducao">
+<H1>CONHEÇA SOBRE AS QMS(Quadros Militares) DO EXÉRCITO</H1>
+
+
+<div class="qms-informativos" >
+<h2>O que são QMS</h2>
+<p>QMS ou quadros militares são as diferentes áreas de carreira dentro do Exército Brasileiro. Eles servem para organizar 
+    os militares de acordo com sua formação, especialização e função.
+Cada quadro define o tipo de trabalho que o militar irá exercer ao longo da sua carreira,
+ podendo atuar no combate, no apoio técnico ou em funções administrativas.
+Essas divisões ajudam a estruturar o Exército, garantindo que cada militar trabalhe em uma área 
+em que esteja preparado e treinado, contribuindo de forma eficiente para o funcionamento da instituição</p>
+</div>
+
+
+<h2>Escolha alguma para ter mais informações</h2>
+
+<div class="qms-botoes" >
+<button onclick="infantaria()">Infantaria</button>
+<button onclick="cavalaria()">Cavalaria</button>
+<button onclick="intendencia()">Intendencia</button>
+<button onclick="engenharia()">Engenharia</button>
+<button onclick="artilharia()">Artilharia</button>
+<button onclick="matbel()">Material Bélico</button>
+<button onclick="Comunicacoes()">Comunicações</button>
+</div>
+
+<div id="div_exibicaoQM" class="exibicaoQM"></div>
+
+</div>
+
+<!-- sortear -->
+ <div class="sorteio">
+ <h1>Descubra qual sua QM</h1>
+ <button onclick="sortearQM()">SORTEAR</button>
+ <div id="div_sorteada"></div>
+</div>
+
+
+
+<script>
+
+    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+    
+    function infantaria(){
+        div_exibicao.innerHTML = ``
+    }
+    
+    let qmsorteada = '';
+    let numQm = 0;
+function sortearQM(){
+    let aleatorio = Math.random();
+    let valor = aleatorio * 6 + 1;
+    numQM = valor.toFixed()
+
+    if (numQm > 0){
+        alert(`Você só pode receber uma QM`)
+    }
+    else{
+    if(numQM <= 1){
+    qmsorteada = 'Infantaria'
+    }
+    else if(numQM < 3){
+    qmsorteada = 'Cavalaria'
+    }
+    else if(numQM < 4){
+    qmsorteada = 'Artilharia'
+    }
+    else if(numQM < 5){
+    qmsorteada = 'Engenharia' 
+    }
+    else if(numQM < 6){
+    qmsorteada = 'Comunicações'
+    }
+    else if(numQM < 7){
+    qmsorteada = 'Intendência'
+    }
+    else{
+    qmsorteada = 'Material Bélico'
+    }
+    }
+
+div_sorteada.innerHTML = `Bizurou , sua QM é ${qmsorteada}`
+
+}
+
+</script>
+
+
+
+
+</html>
