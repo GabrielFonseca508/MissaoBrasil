@@ -211,7 +211,7 @@ arma de Comunicações.</span>
 <div class="qms-exib">
     <h1>Descubra qual sua QM</h1>
  <button onclick="sortearQM()">SORTEAR</button>
- <div style="font-size: 22px;" id="div_sorteada"></div>
+ <div style="font-size: 24px;" id="div_sorteada"></div>
 </div>
 
 
@@ -340,9 +340,46 @@ function sortearQM(){
     }
     }
 
+
+inserirqms(numQM)
+
 div_sorteada.innerHTML = `Bizurou , sua QM é ${qmsorteada}`
 
 }
+
+function inserirqms(NumQm) {
+        let idUsuario = sessionStorage.ID_USUARIO;
+        
+
+        fetch(`/qmsRoutes/update`, {
+            method: "post",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({NumQM:numQM,
+        idUsuario: idUsuario})
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                
+                document.getElementById("btn_refazer").style.display = "block";
+                limparFormulario();
+                finalizarAguardar();
+            } else if (resposta.status == 404) {
+                window.alert("Deu 404!");
+            } else {
+                throw ("Houve um erro ao tentar realizar o quiz! Código da resposta: " + resposta.status);
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            finalizarAguardar();
+        });
+
+        return false;
+
+    }
 
 </script>
 
