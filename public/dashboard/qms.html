@@ -30,7 +30,7 @@
     <img src="../assets/Images/Logo_MissaoBrasil.png">
   </span>
   <div class="hello">
-       <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
+      <h3>Olá, <span id="b_usuario">usuário</span> !   <span id="b_qm"></span></h3>
    </div>
 
   </div>
@@ -220,7 +220,13 @@ arma de Comunicações.</span>
 
 
 <script>
-
+    
+    if(sessionStorage.QMS_USUARIO){
+    b_qm.innerHTML = sessionStorage.QMS_USUARIO;
+}
+else{
+    b_qm.innerHTML = '';
+}
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
     
     function infantaria(){
@@ -302,52 +308,44 @@ function Comunicacoes(){
     let jatemQM = false;
 function sortearQM(){
     let aleatorio = Math.random();
-    let valor = aleatorio * 6 + 1;
-    numQM = valor.toFixed()
-    
+    let valor = aleatorio * 7 + 1;
+    let numQM = valor.toFixed();
 
-    if (jatemQM > 0){
-        alert(`Você só pode receber uma QM`)
+    if (jatemQM || sessionStorage.QMS_USUARIO){
+        alert(`Você só pode receber uma QM`);
+        return;
+    }
+
+    if(numQM == 1){
+        qmsorteada = 'Infantaria'
+    }
+    else if(numQM == 2){
+        qmsorteada = 'Cavalaria'
+    }
+    else if(numQM == 3){
+        qmsorteada = 'Artilharia'
+    }
+    else if(numQM == 4){
+        qmsorteada = 'Engenharia'
+    }
+    else if(numQM == 5){
+        qmsorteada = 'Comunicações'
+    }
+    else if(numQM == 6){
+        qmsorteada = 'Intendência'
     }
     else{
-    if(numQM <= 1){
-        jatemQM = true;
-    qmsorteada = 'Infantaria'
-    }
-    else if(numQM < 3){
-        jatemQM = true;
-    qmsorteada = 'Cavalaria'
-    }
-    else if(numQM < 4){
-        jatemQM = true;
-    qmsorteada = 'Artilharia'
-    }
-    else if(numQM < 5){
-        jatemQM = true;
-    qmsorteada = 'Engenharia' 
-    }
-    else if(numQM < 6){
-        jatemQM = true;
-    qmsorteada = 'Comunicações'
-    }
-    else if(numQM < 7){
-        jatemQM = true;
-    qmsorteada = 'Intendência'
-    }
-    else{
-        jatemQM = true;
-    qmsorteada = 'Material Bélico'
-    }
+        qmsorteada = 'Material Bélico'
     }
 
+    jatemQM = true;
 
-inserirqms(numQM)
+    inserirqms(numQM, qmsorteada);
 
-div_sorteada.innerHTML = `Bizurou , sua QM é ${qmsorteada}`
-
+    div_sorteada.innerHTML = `Bizurou, sua QM é ${qmsorteada}`;
 }
 
-function inserirqms(NumQm) {
+function inserirqms(numQm,qmsorteada) {
         let idUsuario = sessionStorage.ID_USUARIO;
         
 
@@ -356,21 +354,27 @@ function inserirqms(NumQm) {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({NumQM:numQM,
+            body: JSON.stringify({numQM:numQm,
         idUsuario: idUsuario})
         }).then(function (resposta) {
 
             console.log("resposta: ", resposta);
+           
+             sessionStorage.QMS_USUARIO = qmsorteada;
+            document.getElementById("b_qm").innerHTML = qmsorteada;
 
             if (resposta.ok) {
+
+               
+           
+
                 
-                document.getElementById("btn_refazer").style.display = "block";
                 limparFormulario();
                 finalizarAguardar();
             } else if (resposta.status == 404) {
                 window.alert("Deu 404!");
             } else {
-                throw ("Houve um erro ao tentar realizar o quiz! Código da resposta: " + resposta.status);
+                throw ("Houve um erro ao tentar inserir a qm! Código da resposta: " + resposta.status);
             }
         }).catch(function (resposta) {
             console.log(`#ERRO: ${resposta}`);
@@ -378,6 +382,7 @@ function inserirqms(NumQm) {
         });
 
         return false;
+    
 
     }
 

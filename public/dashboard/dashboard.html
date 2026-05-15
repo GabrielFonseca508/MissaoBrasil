@@ -43,7 +43,7 @@
             <img src="../assets/Images/Logo_MissaoBrasil.png" />
           </span>
           <div class="hello">
-            <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
+            <h3>Olá, <span id="b_usuario">usuário</span> !   <span id="b_qm"></span></h3>
           </div>
         </div>
         <ul class="navbar">
@@ -92,6 +92,7 @@
   </body>
 </html>
 <script>
+  b_qm.innerHTML = sessionStorage.QMS_USUARIO;
   b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
   // Função chamada ao carregar a página para obter e processar os dados
@@ -166,7 +167,7 @@
             borderColor: [
               "black", // Cor da borda das linhas
             ],
-            borderWidth: 1, // Largura da borda das linhas
+            borderWidth: 4, // Largura da borda das linhas
           },
         ],
       },

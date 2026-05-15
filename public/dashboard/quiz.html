@@ -30,7 +30,7 @@
     <img src="../assets/Images/Logo_MissaoBrasil.png">
   </span>
   <div class="hello">
-       <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
+       <h3>Olá, <span id="b_usuario">usuário</span> !   <span id="b_qm"></span></h3>
    </div>
 
   </div>
@@ -180,7 +180,7 @@
         <input type="radio" name="q10" id="10q4" value="errado"><label for="10q4">5</label> <br>
 </div>
     </div>
-    <div class="btn-quiz"><button class="botao"  onclick="corrigir()">Finalizar</button></div>
+    <div class="btn-quiz"><button class="botao" id="btn_iniciar"  onclick="corrigir()">Finalizar</button></div>
     
 
     <div class="resposta-quiz" id="div_mensagem"></div>
@@ -188,13 +188,14 @@
     <div class="btn-quiz">
     <button class="botao" id="btn_refazer" onclick="refazerQuiz()" style="display:none;">
     Refazer quiz
-</button>
+</button><br>
+  <button class="botao" id="btn_direcionardash" onclick="dashboard()" style="display:none;">Ir para a dashboard</button>
 </div>
 
 </div>
 
 <script>
-
+    b_qm.innerHTML = sessionStorage.QMS_USUARIO;
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
 function iniciarQuiz() {
@@ -206,6 +207,8 @@ let nota = 0;
 let mensagem = ''
 function corrigir() {
     let pontos = 0;
+
+    
 
     for (let quest = 1; quest <= 10; quest++) {
         let opcoes = document.getElementsByName("q" + quest);
@@ -228,35 +231,28 @@ function corrigir() {
     }
     nota = pontos;
 
-    if(nota  < 3){
-        mensagem = `Acertou ${nota} pontos, Mocorongo.<br>
-        PRONTO, sua QM é engenharia`
+    if(nota  < 2){
+        mensagem = `Acertou ${nota} pontos, Mocorongo.<br>`
     }
-    else if(nota < 5){
-        mensagem = `Acertou ${nota} pontos, muito bisonho.<br>
-        FOGO, sua QM é artilharia`
+    else if(nota < 4){
+        mensagem = `Acertou ${nota} pontos, muito bisonho.<br>`
     }
-    else if(nota < 7){
-        mensagem = `Acertou ${nota} pontos,você ainda é colado.<br>
-        CAVALARIA, sua QM é cavalaria`
-    }else if(nota < 9){
-        mensagem = `Acertou ${nota} pontos, já da pra pagar um embuste.<br>
-        NAPION, sua QM é Material Bélico (Mat Bel)`
-    }else if(nota < 11){
-        mensagem = `Acertou ${nota} pontos, guerreiro safo.<br>
-        RONDON, sua QM é Comunicações`
-    }else if(nota < 13 ){
-        mensagem = `Acertou ${nota} pontos, guerreiro audaz.<br>
-        SUPRIR, sua QM é intendencia`
+    else if(nota < 6){
+        mensagem = `Acertou ${nota} pontos,você ainda é colado.<br>`
+    }else if(nota < 7){
+        mensagem = `Acertou ${nota} pontos, já da pra pagar um embuste.<br>`
+    }else if(nota < 8){
+        mensagem = `Acertou ${nota} pontos, guerreiro safo.<br>`
+    }else if(nota < 9 ){
+        mensagem = `Acertou ${nota} pontos, guerreiro audaz.<br>`
     }else {
-        mensagem = `Acertou ${nota} pontos, distinção do quiz.<br>
-        AÇO, sua QM é infantaria`
+        mensagem = `Acertou ${nota} pontos, distinção do quiz.<br>`
     }
     div_mensagem.innerHTML =
         `<p style="color:gold;">${mensagem}</p>`;
     
     inserirnotas();
-    btn.style.display = "none";
+    document.getElementById("btn_iniciar").style.display = "none";
 }
 
 
@@ -278,6 +274,7 @@ function corrigir() {
             if (resposta.ok) {
                 
                 document.getElementById("btn_refazer").style.display = "block";
+                document.getElementById("btn_direcionardash").style.display = "block";
                 limparFormulario();
                 finalizarAguardar();
             } else if (resposta.status == 404) {
@@ -308,12 +305,16 @@ function corrigir() {
 
     nota = 0;
 
-    let btn = document.getElementById("btn_refazer");
-    if (btn) {
-        btn.style.display = "none";
-    }
+document.getElementById("btn_refazer").style.display = "none";
+document.getElementById("btn_direcionardash").style.display = "none";
 
     window.scrollTo(0, 0);
+    document.getElementById("btn_iniciar").style.display = "block";
+}
+
+function dashboard(){
+    
+window.location.href = "dashboard.html"
 }
 
 </script>
