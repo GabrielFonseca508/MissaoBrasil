@@ -177,10 +177,14 @@
       finalizarAguardar();
       return false;
     } else if (senhaVar != confirmacaoSenhaVar) {
-      // senhas iguais
       cardErro.style.display = "block";
       mensagem_erro.innerHTML = "(Mensagem de erro: As senhas não coincidem)";
       setTimeout(sumirMensagem, 5000);
+      return false;
+    } else if(senhaVar.length < 8){
+       cardErro.style.display = "block";
+      mensagem_erro.innerHTML = "(Mensagem de erro: A senha deve conter ao minimo 8 caracteres)";
+setTimeout(sumirMensagem, 5000);
       return false;
     }
 
