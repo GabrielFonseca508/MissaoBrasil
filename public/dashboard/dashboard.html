@@ -33,6 +33,7 @@
     onload="
       obterDados();
       validarSessao();
+      plotarGraficoRadar();
     "
   >
     <!-- HEADER -->
@@ -64,13 +65,16 @@
       </div>
     </div>
     <!-- corpo -->
+ 
+
+
 
     <div class="topo-dash">
       <h1>Veja o ranking do quiz</h1>
 
       <h2>Veja suas tentativas</h2>
       <select name="" id="select_dashs">
-        <option>SELECIONE O RANKING</option>
+        <option>Usuarios por QM</option>
         <option>Minhas tentativas</option>
         <option>Ranking geral</option>
       </select>
@@ -80,6 +84,10 @@
     <div>
       <!-- Elemento canvas onde o gráfico de barra será desenhado -->
 
+        <div id="Gqms" class="container-grafico-qms">
+  <canvas id="radarChart"></canvas>
+</div>
+
       <div id="gGeral" class="container-grafico">
         <canvas class="barrasG" id="geral"></canvas>
       </div>
@@ -87,7 +95,9 @@
       <!-- Elemento canvas onde o gráfico de linha será desenhado -->
       <div id="Gindividual" class="container-grafico">
         <canvas id="individual"></canvas>
+
       </div>
+    
     </div>
   </body>
 </html>
@@ -122,6 +132,18 @@
       .catch(function (err) {
         console.log(err);
       });
+
+
+       fetch(`/qmsRoutes/listar`)
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+        plotarGraficoRadar(data);
+      })
+      .catch(function (err) {
+        console.log(err);
+      });
   }
 
   function selecionar() {
@@ -129,12 +151,17 @@
     if (opcao == "Minhas tentativas") {
       gGeral.style.display = "none";
       Gindividual.style.display = "block";
-    } else if (opcao == "Ranking geral") {
+      Gqms.style.display = "none";
+    } 
+    else if (opcao == "Ranking geral") {
       Gindividual.style.display = "none";
       gGeral.style.display = "block";
-    } else {
-      Gindividual.style.display = "block";
-      gGeral.style.display = "block";
+      Gqms.style.display = "none";
+    } 
+    else {
+      Gindividual.style.display = "none";
+      gGeral.style.display = "none";
+      Gqms.style.display = "block";
     }
   }
   // Função para plotar o gráfico de linha
@@ -214,4 +241,80 @@
       },
     });
   }
+
+function plotarGraficoRadar(dados) {
+
+  var valores = [];
+
+  for (var i = 0; i < dados.length; i++) {
+    valores.push(dados[i].quantidadeUsuarios);
+  }
+
+  var ctx = document.getElementById("radarChart").getContext("2d");
+
+  new Chart(ctx, {
+    type: "radar",
+
+    data: {
+      labels: [
+        "INFANTARIA",
+        "CAVALARIA",
+        "INTENDÊNCIA",
+        "ENGENHARIA",
+        "ARTILHARIA",
+        "MATERIAL BÉLICO",
+        "COMUNICAÇÕES"
+      ],
+
+      datasets: [{
+        label: "Quantidade de usuários por QM",
+
+        data: valores,
+
+        backgroundColor: "rgba(0, 128, 0, 0.2)",
+        borderColor: "green",
+        borderWidth: 3,
+
+        pointBackgroundColor: "black",
+        pointBorderColor: "white"
+      }]
+    },
+
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+
+      scales: {
+        r: {
+          beginAtZero: true,
+
+          ticks: {
+            color: "white",
+            backdropColor: "transparent"
+          },
+
+          pointLabels: {
+            color: "white"
+          },
+
+          grid: {
+            color: "rgba(255,255,255,0.3)"
+          },
+
+          angleLines: {
+            color: "rgba(255,255,255,0.3)"
+          }
+        }
+      },
+
+      plugins: {
+        legend: {
+          labels: {
+            color: "white"
+          }
+        }
+      }
+    }
+  });
+}
 </script>

@@ -1,30 +1,15 @@
 var database = require("../database/config");
 
 
-// function listar(idUsuario,NumQM) {
-//     var instrucaoSql = `
-// UPDATE usuario SET fkQM = ${NumQM} WHERE id = ${idUsuario}   
-//     `;
-//     console.log("Executando a instrução SQL: \n" + instrucaoSql);
-//     return database.executar(instrucaoSql);
-// }
-
-// function listarIndividual(idUsuario) {
-//     var instrucaoSql = `
-// SELECT 
-// usuario.nome,
-// resultado.nota,
-// DATE_FORMAT(resultado.dtRealizacao, '%d/%m %H:%i') AS dataFormatada
-// FROM resultado
-// JOIN usuario
-// ON resultado.fkUsuario = usuario.id
-// WHERE fkUsuario = ${idUsuario};  
-//     `;
-//     console.log("Executando a instrução SQL: \n" + instrucaoSql);
-//     return database.executar(instrucaoSql);
-// }
-
-
+function listar(idUsuario,NumQM) {
+    var instrucaoSql = `
+SELECT fkQM, COUNT(*) AS quantidadeUsuarios
+FROM usuario
+GROUP BY fkQM; 
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
 
 
 function update(NumQM, idUsuario) {
@@ -39,5 +24,6 @@ function update(NumQM, idUsuario) {
 
 
 module.exports = {
-  update
+  update,
+  listar
 }

@@ -172,7 +172,7 @@ representa os valores de precisão, disciplina e poder de combate da arma de Art
 </div>
 
 <div id="Napion" class="qms-exib" style="display: none;">
-    <h1>MAETRIAL BÉLICO</h1>
+    <h1>MATERIAL BÉLICO</h1>
     <span>O Material Bélico é o quadro do Exército Brasileiro responsável pela manutenção, recuperação, desenvolvimento e controle dos 
 armamentos, viaturas, equipamentos militares e sistemas utilizados pelas tropas. Sua missão é garantir que todos os materiais de emprego 
 militar estejam em perfeito funcionamento, assegurando eficiência, segurança e capacidade operacional para o Exército Brasileiro.
@@ -346,7 +346,7 @@ function sortearQM(){
 }
 
 function inserirqms(numQm,qmsorteada) {
-        let idUsuario = sessionStorage.ID_USUARIO;
+        let idusuario = sessionStorage.ID_USUARIO;
         
 
         fetch(`/qmsRoutes/update`, {
@@ -355,15 +355,17 @@ function inserirqms(numQm,qmsorteada) {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({numQM:numQm,
-        idUsuario: idUsuario})
+        idUsuario:idusuario})
         }).then(function (resposta) {
+            console.log('Essa é a resposta',resposta)
 
-            console.log("resposta: ", resposta);
+            console.log("resposta: ", resposta, "Minha : ta enviando");
            
              sessionStorage.QMS_USUARIO = qmsorteada;
             document.getElementById("b_qm").innerHTML = qmsorteada;
 
             if (resposta.ok) {
+                console.log("respostaok")
 
                
            
@@ -374,6 +376,7 @@ function inserirqms(numQm,qmsorteada) {
             } else if (resposta.status == 404) {
                 window.alert("Deu 404!");
             } else {
+                console.log("caiu aqui")
                 throw ("Houve um erro ao tentar inserir a qm! Código da resposta: " + resposta.status);
             }
         }).catch(function (resposta) {
