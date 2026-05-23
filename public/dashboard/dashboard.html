@@ -33,7 +33,6 @@
     onload="
       obterDados();
       validarSessao();
-      plotarGraficoRadar();
     "
   >
     <!-- HEADER -->
@@ -102,7 +101,12 @@
   </body>
 </html>
 <script>
-  b_qm.innerHTML = sessionStorage.QMS_USUARIO;
+if(sessionStorage.QMS_USUARIO){
+    b_qm.innerHTML = sessionStorage.QMS_USUARIO;
+}
+else{
+    b_qm.innerHTML = '';
+}
   b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
   // Função chamada ao carregar a página para obter e processar os dados
@@ -244,10 +248,34 @@
 
 function plotarGraficoRadar(dados) {
 
-  var valores = [];
+  var valores = [0, 0, 0, 0, 0, 0, 0];
 
   for (var i = 0; i < dados.length; i++) {
-    valores.push(dados[i].quantidadeUsuarios);
+
+    var qm = dados[i].fkQM;
+    var quantidade = dados[i].quantidadeUsuarios;
+
+    if (qm == 1) {
+      valores[0] = quantidade; // INFANTARIA
+    } 
+    else if (qm == 2) {
+      valores[1] = quantidade; // CAVALARIA
+    } 
+    else if (qm == 3) {
+      valores[2] = quantidade; // ARTILHARIA
+    } 
+    else if (qm == 4) {
+      valores[3] = quantidade; // ENGENHARIA
+    } 
+    else if (qm == 5) {
+      valores[4] = quantidade; // COMUNICAÇÕES
+    } 
+    else if (qm == 6) {
+      valores[5] = quantidade; // INTENDÊNCIA
+    } 
+    else if (qm == 7) {
+      valores[6] = quantidade; // MATERIAL BÉLICO
+    }
   }
 
   var ctx = document.getElementById("radarChart").getContext("2d");
@@ -259,16 +287,15 @@ function plotarGraficoRadar(dados) {
       labels: [
         "INFANTARIA",
         "CAVALARIA",
-        "INTENDÊNCIA",
-        "ENGENHARIA",
         "ARTILHARIA",
-        "MATERIAL BÉLICO",
-        "COMUNICAÇÕES"
+        "ENGENHARIA",
+        "COMUNICAÇÕES",
+        "INTENDÊNCIA",
+        "MATERIAL BÉLICO"
       ],
 
       datasets: [{
         label: "Quantidade de usuários por QM",
-
         data: valores,
 
         backgroundColor: "rgba(0, 128, 0, 0.2)",

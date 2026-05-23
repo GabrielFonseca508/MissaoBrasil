@@ -195,7 +195,14 @@
 </div>
 
 <script>
+
+    if(sessionStorage.QMS_USUARIO){
     b_qm.innerHTML = sessionStorage.QMS_USUARIO;
+}
+else{
+    b_qm.innerHTML = '';
+}
+
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
 function iniciarQuiz() {
