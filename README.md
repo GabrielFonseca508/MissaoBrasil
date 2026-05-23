@@ -54,6 +54,12 @@ O desenvolvimento do projeto teve como foco a aplicação prática de conhecimen
 
 ---
 
+## 📄 Documentação
+
+[📥 Abrir documentação](./docs/Documentacao.pdf)
+
+---
+
 ## 👨‍💻 Autor
 
 Desenvolvido por **Gabriel Eduardo dos Santos Fonseca**.
