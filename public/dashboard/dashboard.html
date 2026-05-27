@@ -66,11 +66,45 @@
     <!-- corpo -->
  
 
+<div class="titulo-dash"><h1>Veja os rankings do quiz e qms</h1></div>
+    
+
+<div class="kpis">
+   <div class="container">
+        <div class="texto-giria-kpi">
+          <h2>Usuários que possuem QM</h2>
+          <div id="qtd_qm">
+            20 
+          </div>
+          
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="texto-giria-kpi">
+          <h2>Sua melhor nota</h2>
+          <div id="maior_nota" >
+            0
+          </div>
+          
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="texto-giria-kpi">
+          <h2>Sua menor nota</h2>
+
+          <div id="menor_nota">
+            0
+          </div>
+          
+        </div>
+      </div>
+</div>
 
 
     <div class="topo-dash">
-      <h1>Veja o ranking do quiz</h1>
-
+      
       <h2>Veja suas tentativas</h2>
       <select name="" id="select_dashs">
         <option>Usuarios por QM</option>
@@ -174,11 +208,38 @@ else{
     var votos = [];
     var jogadores = [];
 
+    
+    
+
     // Preenchendo os arrays com os dados
     for (var i = 0; i < dados.length; i++) {
       votos.push(dados[i].nota);
       jogadores.push(dados[i].dataFormatada);
     }
+    let maiornota = 0;
+    for(let i = votos.length ; i >= 0; i--){
+      let atual = votos[i]
+      if(atual > maiornota){
+        maiornota = atual
+      }
+
+    }
+
+    maior_nota.innerHTML = maiornota
+
+
+    let menornota = votos[votos.length-1];
+    for(let i = votos.length ; i >= 0; i--){
+      let atual = votos[i]
+
+      if(atual < menornota ){
+        menornota = atual
+      }
+
+    }
+
+    menor_nota.innerHTML = menornota
+
 
     // Capturando o elemento canvas pelo id
     var ctx = document.getElementById("individual").getContext("2d");
@@ -210,6 +271,9 @@ else{
     var fkUsuarios = [];
     var notas = [];
 
+ 
+
+ 
     // Preenchendo os arrays com os dados
     for (var i = 0; i < dados.length; i++) {
       fkUsuarios.push(dados[i].nome);
@@ -230,10 +294,10 @@ else{
             data: notas, // Dados dos votos
             tension: 0.3,
             backgroundColor: [
-              "black", // Cor de fundo das barras
+              "green", // Cor de fundo das barras
             ],
             borderColor: [
-              "green", // Cor da borda das barras
+              "black", // Cor da borda das barras
             ],
             borderWidth: 2, // Largura da borda das barras
             borderRadius: 35,
@@ -249,11 +313,14 @@ else{
 function plotarGraficoRadar(dados) {
 
   var valores = [0, 0, 0, 0, 0, 0, 0];
+  let totalqms = 0
 
   for (var i = 0; i < dados.length; i++) {
 
     var qm = dados[i].fkQM;
     var quantidade = dados[i].quantidadeUsuarios;
+    
+    
 
     if (qm == 1) {
       valores[0] = quantidade; // INFANTARIA
@@ -277,6 +344,12 @@ function plotarGraficoRadar(dados) {
       valores[6] = quantidade; // MATERIAL BÉLICO
     }
   }
+
+  for(let i = 0; i < valores.length; i++){
+    totalqms += valores[i]
+  }
+  qtd_qm.innerHTML = totalqms
+
 
   var ctx = document.getElementById("radarChart").getContext("2d");
 
