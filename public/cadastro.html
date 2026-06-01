@@ -80,6 +80,7 @@
               />
             </div>
             <button class="botao" onclick="cadastrar()">Cadastrar</button>
+            <p class="cad-log">Já tem conta ? <a href="login.html">Faça login</a></p>
           </div>
           <div id="div_aguardar" class="loading-div">
             <img src="./assets/circle-loading.gif" id="loading-gif" />
@@ -181,7 +182,14 @@
       mensagem_erro.innerHTML = "(Mensagem de erro: As senhas não coincidem)";
       setTimeout(sumirMensagem, 5000);
       return false;
-    } else if(senhaVar.length < 8){
+    }else if(!(emailVar.includes('@'))){
+       cardErro.style.display = "block";
+      mensagem_erro.innerHTML = "(Mensagem de erro: O email deve conter @)";
+      return false
+    }
+    
+    
+    else if(senhaVar.length < 8){
        cardErro.style.display = "block";
       mensagem_erro.innerHTML = "(Mensagem de erro: A senha deve conter ao minimo 8 caracteres)";
 setTimeout(sumirMensagem, 5000);

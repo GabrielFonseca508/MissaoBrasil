@@ -401,6 +401,16 @@ input {
   width: 50px;
 }
 
+/* Cadastro */
+.cad-log{
+ display: flex; 
+ justify-content: center;
+ font-size: 17px;
+ font-weight: bold;
+}
+
+
+
 /* Girias */
 .titulo p{
    

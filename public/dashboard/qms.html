@@ -29,7 +29,7 @@
         <span class="image">
     <img src="../assets/Images/Logo_MissaoBrasil.png">
   </span>
-  <div class="hello">
+  <div id="inicio" class="hello">
       <h3>Olá, <span id="b_usuario">usuário</span> !   <span id="b_qm"></span></h3>
    </div>
 
@@ -57,7 +57,7 @@
     </div>
 
 
- <div class="qms-titulo">
+ <div  class="qms-titulo">
 <H1>CONHEÇA SOBRE AS QMS(Quadros Militares) DO EXÉRCITO</H1>
 </div>
 
@@ -212,7 +212,7 @@ arma de Comunicações.</span>
     <h1>Descubra qual sua QM</h1>
  <button onclick="sortearQM()">SORTEAR</button>
  <div style="font-size: 24px;" id="div_sorteada"></div>
-</div>
+</div >
 
 
 
@@ -343,6 +343,10 @@ function sortearQM(){
     inserirqms(numQM, qmsorteada);
 
     div_sorteada.innerHTML = `Bizurou, sua QM é ${qmsorteada}`;
+   setTimeout(function() {
+    window.location.href = "#inicio";
+}, 3000);
+    
 }
 
 function inserirqms(numQm,qmsorteada) {
@@ -367,10 +371,6 @@ function inserirqms(numQm,qmsorteada) {
             if (resposta.ok) {
                 console.log("respostaok")
 
-               
-           
-
-                
                 limparFormulario();
                 finalizarAguardar();
             } else if (resposta.status == 404) {
