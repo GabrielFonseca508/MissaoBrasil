@@ -184,6 +184,7 @@
     
 
     <div class="resposta-quiz" id="div_mensagem"></div>
+    <div class="resposta-quiz" id="div_mencento"></div>
 
     <div class="btn-quiz">
     <button class="botao" id="btn_refazer" onclick="refazerQuiz()" style="display:none;">
@@ -258,8 +259,9 @@ function corrigir() {
 
     let porcento = nota / 10 * 100
     div_mensagem.innerHTML =
-        `<p style="color:gold;">${mensagem}</p>
-        <p style="color:gold;">$Acertou ${porcento}% do quiz</p>`;
+        `<span style="color:gold;">${mensagem}</span><br>
+        `;
+        div_mencento.innerHTML = `<span style="color:gold;">Acertou ${porcento}% do quiz</span>`;
     
     inserirnotas();
     document.getElementById("btn_iniciar").style.display = "none";
